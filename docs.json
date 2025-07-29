@@ -1,35 +1,22 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Frate Returns",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
         "tab": "Guides",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Guides",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "guides/retrieving-return-data"
             ]
           }
         ]
@@ -38,18 +25,40 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Using the API",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/getting-started",
+              "api-reference/authentication",
+              "api-reference/rate-limit",
+              "api-reference/pagination",
+              "api-reference/error-codes"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Endpoints",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoints/returns",
+              "api-reference/endpoints/returns/create-return-deep-link",
+              "api-reference/endpoints/returns/create-allowlist-item"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Webhook Reference",
+        "groups": [
+          {
+            "group": "Webhook Reference",
+            "pages": [
+              "webhook-reference/getting-started",
+              "webhook-reference/create-a-webhook-subscription",
+              "webhook-reference/validate-webhooks-from-frate"
+            ]
+          },
+          {
+            "group": "Webhook Payloads",
+            "pages": [
+              "webhook-reference/webhook-payloads/return"
             ]
           }
         ]
@@ -58,18 +67,8 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://www.frate.com/blog",
           "icon": "newspaper"
         }
       ]
@@ -83,20 +82,18 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "https://help.frate.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Request Demo",
+      "href": "https://www.frate.com/book-a-demo"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/returnwithfrate/?viewAsMember=true"
     }
   }
 }
