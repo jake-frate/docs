@@ -11,35 +11,21 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Guides",
-            "pages": [
-              "guides/retrieving-return-data"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Using the API",
+            "group": "Basic Usage",
             "pages": [
-              "api-reference/getting-started",
-              "api-reference/authentication",
-              "api-reference/rate-limit",
-              "api-reference/pagination",
-              "api-reference/error-codes"
+              "api-reference/basic-usage/basic-usage"
             ]
           },
           {
             "group": "Endpoints",
             "pages": [
-              "api-reference/endpoints/returns",
-              "api-reference/endpoints/returns/create-return-deep-link",
-              "api-reference/endpoints/returns/create-allowlist-item"
+              "api-reference/endpoints/return-groups",
+              "api-reference/endpoints/create-return-deep-link",
+              "api-reference/endpoints/create-allowlist-item",
+              "api-reference/endpoints/list-allowlist-items"
             ]
           }
         ]
