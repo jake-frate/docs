@@ -8,13 +8,18 @@
     "dark": "#15803D"
   },
   "favicon": "/favicon.ico",
+  "api": {
+    "playground": {
+      "display": "none"
+    }
+  },
   "navigation": {
     "tabs": [
       {
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Basic Usage",
+            "group": "Overview",
             "pages": [
               "api-reference/basic-usage/basic-usage"
             ]
