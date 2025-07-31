@@ -1,2204 +1,2300 @@
 {
-    "openapi":"3.1.0",
-    "info":{
-       "title":"Frate Returns API",
-       "version":"0.1.0"
-    },
-    "servers":[
-       {
-          "url":"/api"
+   "openapi": "3.1.0",
+   "info": {
+     "title": "Frate Returns API",
+     "version": "0.1.0"
+   },
+   "servers": [
+     {
+       "url": "/api"
+     }
+   ],
+   "paths": {
+     "/v1/returns-groups": {
+       "get": {
+         "summary": "Zowie Return Groups",
+         "description": "Return Groups",
+         "operationId": "zowie_return_groups_v1_returns_groups_get",
+         "deprecated": true,
+         "parameters": [
+           {
+             "name": "email",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Email"
+             }
+           },
+           {
+             "name": "order_name",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Order Name"
+             }
+           },
+           {
+             "name": "min_created_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Min Created At"
+             }
+           },
+           {
+             "name": "max_created_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Max Created At"
+             }
+           },
+           {
+             "name": "min_updated_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Min Updated At"
+             }
+           },
+           {
+             "name": "max_updated_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Max Updated At"
+             }
+           },
+           {
+             "name": "min_shipped_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Min Shipped At"
+             }
+           },
+           {
+             "name": "max_shipped_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Max Shipped At"
+             }
+           },
+           {
+             "name": "limit",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "integer"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Limit"
+             }
+           },
+           {
+             "name": "offset",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "integer"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Offset"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "type": "array",
+                   "items": {
+                     "$ref": "#/components/schemas/ZowieReturnGroupSerializer"
+                   },
+                   "title": "Response Zowie Return Groups V1 Returns Groups Get"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
        }
-    ],
-    "paths":{
-       "/v1/returns-groups":{
-          "get":{
-             "summary":"Zowie Return Groups",
-             "description":"Return Groups",
-             "operationId":"zowie_return_groups_v1_returns_groups_get",
-             "deprecated":true,
-             "parameters":[
-                {
-                   "name":"email",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Email"
-                   }
-                },
-                {
-                   "name":"order_name",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Order Name"
-                   }
-                },
-                {
-                   "name":"min_created_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Min Created At"
-                   }
-                },
-                {
-                   "name":"max_created_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Max Created At"
-                   }
-                },
-                {
-                   "name":"min_updated_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Min Updated At"
-                   }
-                },
-                {
-                   "name":"max_updated_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Max Updated At"
-                   }
-                },
-                {
-                   "name":"min_shipped_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Min Shipped At"
-                   }
-                },
-                {
-                   "name":"max_shipped_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Max Shipped At"
-                   }
-                },
-                {
-                   "name":"limit",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"integer"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Limit"
-                   }
-                },
-                {
-                   "name":"offset",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"integer"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Offset"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "type":"array",
-                            "items":{
-                               "$ref":"#/components/schemas/ZowieReturnGroupSerializer"
-                            },
-                            "title":"Response Zowie Return Groups V1 Returns Groups Get"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
+     },
+     "/v1/returns-groups/{return_group_id}/process": {
+       "post": {
+         "summary": "Zowie Process Return Group",
+         "description": "Process Return Group",
+         "operationId": "zowie_process_return_group_v1_returns_groups__return_group_id__process_post",
+         "deprecated": true,
+         "parameters": [
+           {
+             "name": "return_group_id",
+             "in": "path",
+             "required": true,
+             "schema": {
+               "type": "integer",
+               "title": "Return Group Id"
              }
-          }
-       },
-       "/v1/returns-groups/{return_group_id}/process":{
-          "post":{
-             "summary":"Zowie Process Return Group",
-             "description":"Process Return Group",
-             "operationId":"zowie_process_return_group_v1_returns_groups__return_group_id__process_post",
-             "deprecated":true,
-             "parameters":[
-                {
-                   "name":"return_group_id",
-                   "in":"path",
-                   "required":true,
-                   "schema":{
-                      "type":"integer",
-                      "title":"Return Group Id"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/MessageResponse"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
              }
-          }
-       },
-       "/v1/returns-groups/{return_group_id}/cancel":{
-          "post":{
-             "summary":"Zowie Cancel Return Group",
-             "description":"Cancel Return Group",
-             "operationId":"zowie_cancel_return_group_v1_returns_groups__return_group_id__cancel_post",
-             "deprecated":true,
-             "parameters":[
-                {
-                   "name":"return_group_id",
-                   "in":"path",
-                   "required":true,
-                   "schema":{
-                      "type":"integer",
-                      "title":"Return Group Id"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/MessageResponse"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/MessageResponse"
+                 }
+               }
              }
-          }
-       },
-       "/v1/returns-groups/{return_group_id}/complete":{
-          "post":{
-             "summary":"Zowie Complete Return Group",
-             "description":"Complete Return Group",
-             "operationId":"zowie_complete_return_group_v1_returns_groups__return_group_id__complete_post",
-             "deprecated":true,
-             "parameters":[
-                {
-                   "name":"return_group_id",
-                   "in":"path",
-                   "required":true,
-                   "schema":{
-                      "type":"integer",
-                      "title":"Return Group Id"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/MessageResponse"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
              }
-          }
-       },
-       "/v1/returns-groups/{return_group_id}/flag":{
-          "post":{
-             "summary":"Zowie Flag Return Group",
-             "description":"Flag Return Group",
-             "operationId":"zowie_flag_return_group_v1_returns_groups__return_group_id__flag_post",
-             "deprecated":true,
-             "parameters":[
-                {
-                   "name":"return_group_id",
-                   "in":"path",
-                   "required":true,
-                   "schema":{
-                      "type":"integer",
-                      "title":"Return Group Id"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/MessageResponse"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
-             }
-          }
-       },
-       "/v2/allowlist-items":{
-          "get":{
-             "tags":[
-                "allowlist-items"
-             ],
-             "summary":"List Allowlist Items",
-             "description":"List AllowlistItems",
-             "operationId":"list_allowlist_items_v2_allowlist_items_get",
-             "parameters":[
-                {
-                   "name":"after",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"After"
-                   }
-                },
-                {
-                   "name":"before",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Before"
-                   }
-                },
-                {
-                   "name":"order",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "enum":[
-                         "DESC",
-                         "ASC"
-                      ],
-                      "type":"string",
-                      "default":"DESC",
-                      "title":"Order"
-                   }
-                },
-                {
-                   "name":"limit",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"integer"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "default":100,
-                      "title":"Limit"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/AllowlistItemListSerializer"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
-             }
-          },
-          "post":{
-             "tags":[
-                "allowlist-items"
-             ],
-             "summary":"Create Allowlist Item",
-             "description":"Create AllowlistItem",
-             "operationId":"create_allowlist_item_v2_allowlist_items_post",
-             "parameters":[
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "requestBody":{
-                "required":true,
-                "content":{
-                   "application/json":{
-                      "schema":{
-                         "$ref":"#/components/schemas/AllowlistItemCreateSerializer"
-                      }
-                   }
-                }
-             },
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/AllowlistItemSerializer"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
-             }
-          }
-       },
-       "/v2/allowlist-items/{allowlist_item_id}":{
-          "delete":{
-             "tags":[
-                "allowlist-items"
-             ],
-             "summary":"Delete Allowlist Item",
-             "description":"Delete AllowlistItem",
-             "operationId":"delete_allowlist_item_v2_allowlist_items__allowlist_item_id__delete",
-             "parameters":[
-                {
-                   "name":"allowlist_item_id",
-                   "in":"path",
-                   "required":true,
-                   "schema":{
-                      "type":"integer",
-                      "title":"Allowlist Item Id"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
-             }
-          }
-       },
-       "/v2/deep-links":{
-          "post":{
-             "summary":"Deep Links",
-             "description":"Public API deep links",
-             "operationId":"deep_links_v2_deep_links_post",
-             "parameters":[
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "requestBody":{
-                "required":true,
-                "content":{
-                   "application/json":{
-                      "schema":{
-                         "$ref":"#/components/schemas/DeepLinkCreateSerializer"
-                      }
-                   }
-                }
-             },
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/DeepLinkSerializer"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
-             }
-          }
-       },
-       "/v2/return-groups":{
-          "get":{
-             "summary":"Return Groups",
-             "description":"Public API return groups endpoint",
-             "operationId":"return_groups_v2_return_groups_get",
-             "parameters":[
-                {
-                   "name":"email",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Email"
-                   }
-                },
-                {
-                   "name":"order_name",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Order Name"
-                   }
-                },
-                {
-                   "name":"min_created_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Min Created At"
-                   }
-                },
-                {
-                   "name":"max_created_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Max Created At"
-                   }
-                },
-                {
-                   "name":"min_updated_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Min Updated At"
-                   }
-                },
-                {
-                   "name":"max_updated_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Max Updated At"
-                   }
-                },
-                {
-                   "name":"min_shipped_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Min Shipped At"
-                   }
-                },
-                {
-                   "name":"max_shipped_at",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string",
-                            "format":"date-time"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Max Shipped At"
-                   }
-                },
-                {
-                   "name":"limit",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"integer"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Limit"
-                   }
-                },
-                {
-                   "name":"offset",
-                   "in":"query",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"integer"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"Offset"
-                   }
-                },
-                {
-                   "name":"x-frate-api-token",
-                   "in":"header",
-                   "required":false,
-                   "schema":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"null"
-                         }
-                      ],
-                      "title":"X-Frate-Api-Token"
-                   }
-                }
-             ],
-             "responses":{
-                "200":{
-                   "description":"Successful Response",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "type":"array",
-                            "items":{
-                               "$ref":"#/components/schemas/ReturnGroupSerializer"
-                            },
-                            "title":"Response Return Groups V2 Return Groups Get"
-                         }
-                      }
-                   }
-                },
-                "422":{
-                   "description":"Validation Error",
-                   "content":{
-                      "application/json":{
-                         "schema":{
-                            "$ref":"#/components/schemas/HTTPValidationError"
-                         }
-                      }
-                   }
-                }
-             }
-          }
+           }
+         }
        }
-    },
-    "components":{
-       "schemas":{
-          "AllowlistItemCreateSerializer":{
-             "properties":{
-                "value":{
-                   "type":"string",
-                   "minLength":1,
-                   "title":"Value"
-                },
-                "description":{
-                   "type":"string",
-                   "title":"Description",
-                   "default":""
-                }
-             },
-             "type":"object",
-             "required":[
-                "value"
-             ],
-             "title":"AllowlistItemCreate",
-             "description":"AllowlistItemCreate Serializer\n\nTODO: Add `item_type` when we support multiple item types"
-          },
-          "AllowlistItemListSerializer":{
-             "properties":{
-                "items":{
-                   "items":{
-                      "$ref":"#/components/schemas/AllowlistItemSerializer"
-                   },
-                   "type":"array",
-                   "title":"Items"
-                },
-                "page_info":{
-                   "$ref":"#/components/schemas/PageInfoSerializer"
-                }
-             },
-             "type":"object",
-             "required":[
-                "items",
-                "page_info"
-             ],
-             "title":"AllowlistItemList",
-             "description":"AllowlistItemList Serializer"
-          },
-          "AllowlistItemSerializer":{
-             "properties":{
-                "id":{
-                   "type":"integer",
-                   "title":"Id"
-                },
-                "value":{
-                   "type":"string",
-                   "title":"Value"
-                },
-                "description":{
-                   "type":"string",
-                   "title":"Description",
-                   "default":""
-                },
-                "created_at":{
-                   "type":"string",
-                   "title":"Created At"
-                }
-             },
-             "type":"object",
-             "required":[
-                "id",
-                "value",
-                "created_at"
-             ],
-             "title":"AllowlistItem",
-             "description":"AllowlistItem Serializer"
-          },
-          "CurrencyCodeEnum":{
-             "type":"string",
-             "enum":[
-                "CAD",
-                "USD",
-                "CNY",
-                "JPY",
-                "AUD",
-                "SGD",
-                "INR",
-                "MXN",
-                "EGP",
-                "ZAR",
-                "BRL",
-                "KRW",
-                "SAR",
-                "ILS",
-                "MNT",
-                "AED",
-                "PHP",
-                "NZD",
-                "HKD",
-                "TWD",
-                "EUR",
-                "GBP",
-                "CHF",
-                "RUB",
-                "SEK",
-                "UAH",
-                "TRY",
-                "RSD",
-                "RON",
-                "PLN",
-                "NOK",
-                "MKD",
-                "MDL",
-                "ISK",
-                "HUF",
-                "GEL",
-                "DKK",
-                "CZK",
-                "BGN",
-                "BAM",
-                "BYN",
-                "AZN",
-                "AMD",
-                "ALL"
-             ],
-             "title":"CurrencyCodeEnum"
-          },
-          "CustomerSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"customer",
-                   "title":"Type",
-                   "default":"customer"
-                },
-                "name":{
-                   "type":"string",
-                   "title":"Name"
-                },
-                "email":{
-                   "type":"string",
-                   "title":"Email"
-                }
-             },
-             "type":"object",
-             "required":[
-                "name",
-                "email"
-             ],
-             "title":"Customer",
-             "description":"v2 `Customer` model Serializer"
-          },
-          "DeepLinkCreateSerializer":{
-             "properties":{
-                "order_name":{
-                   "type":"string",
-                   "title":"Order Name"
-                },
-                "zip_code_or_email":{
-                   "type":"string",
-                   "title":"Zip Code Or Email"
-                },
-                "target":{
-                   "anyOf":[
-                      {
-                         "$ref":"#/components/schemas/DeepLinkTargetEnum"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ]
-                }
-             },
-             "type":"object",
-             "required":[
-                "order_name",
-                "zip_code_or_email"
-             ],
-             "title":"DeepLinkCreate",
-             "description":"v2 `DeepLinkCreate` Serializer"
-          },
-          "DeepLinkSerializer":{
-             "properties":{
-                "url":{
-                   "type":"string",
-                   "title":"Url"
-                }
-             },
-             "type":"object",
-             "required":[
-                "url"
-             ],
-             "title":"DeepLink",
-             "description":"v2 `DeepLink` Serializer"
-          },
-          "DeepLinkTargetEnum":{
-             "type":"string",
-             "enum":[
-                "RETURN",
-                "RETURN_STATUS"
-             ],
-             "title":"DeepLinkTargetEnum",
-             "description":"DeepLink target."
-          },
-          "ExchangeLineItemSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"exchange_line_item",
-                   "title":"Type",
-                   "default":"exchange_line_item"
-                },
-                "id":{
-                   "type":"string",
-                   "title":"Id"
-                },
-                "product_platform_id":{
-                   "type":"string",
-                   "title":"Product Platform Id"
-                },
-                "product_name":{
-                   "type":"string",
-                   "title":"Product Name"
-                },
-                "variant_platform_id":{
-                   "type":"string",
-                   "title":"Variant Platform Id"
-                },
-                "variant_name":{
-                   "type":"string",
-                   "title":"Variant Name"
-                },
-                "sku":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Sku"
-                },
-                "quantity":{
-                   "type":"integer",
-                   "title":"Quantity"
-                },
-                "subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "discounted_subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "tax_total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                }
-             },
-             "type":"object",
-             "required":[
-                "id",
-                "product_platform_id",
-                "product_name",
-                "variant_platform_id",
-                "variant_name",
-                "sku",
-                "quantity",
-                "subtotal",
-                "discounted_subtotal",
-                "tax_total",
-                "total"
-             ],
-             "title":"ExchangeLineItemSerializer",
-             "description":"v2 `ExchangeLineItem` model Serializer"
-          },
-          "HTTPValidationError":{
-             "properties":{
-                "detail":{
-                   "items":{
-                      "$ref":"#/components/schemas/ValidationError"
-                   },
-                   "type":"array",
-                   "title":"Detail"
-                }
-             },
-             "type":"object",
-             "title":"HTTPValidationError"
-          },
-          "MessageResponse":{
-             "properties":{
-                "message":{
-                   "type":"string",
-                   "title":"Message"
-                }
-             },
-             "type":"object",
-             "required":[
-                "message"
-             ],
-             "title":"MessageResponse"
-          },
-          "MoneyBag":{
-             "properties":{
-                "shop_money":{
-                   "$ref":"#/components/schemas/MoneySerializer"
-                },
-                "presentment_money":{
-                   "$ref":"#/components/schemas/MoneySerializer"
-                }
-             },
-             "type":"object",
-             "title":"MoneyBag",
-             "deprecated":true
-          },
-          "MoneySerializer":{
-             "properties":{
-                "amount":{
-                   "type":"number",
-                   "title":"Amount",
-                   "default":0
-                },
-                "currency_code":{
-                   "$ref":"#/components/schemas/CurrencyCodeEnum",
-                   "default":"USD"
-                }
-             },
-             "type":"object",
-             "title":"MoneySerializer",
-             "deprecated":true
-          },
-          "OrderSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"order",
-                   "title":"Type",
-                   "default":"order"
-                },
-                "id":{
-                   "type":"integer",
-                   "title":"Id"
-                },
-                "platform_id":{
-                   "type":"string",
-                   "title":"Platform Id"
-                },
-                "name":{
-                   "type":"string",
-                   "title":"Name"
-                },
-                "created_at":{
-                   "type":"string",
-                   "title":"Created At"
-                },
-                "source_name":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Source Name"
-                },
-                "fulfilled_at":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Fulfilled At"
-                },
-                "taxes_included":{
-                   "type":"boolean",
-                   "title":"Taxes Included"
-                }
-             },
-             "type":"object",
-             "required":[
-                "id",
-                "platform_id",
-                "name",
-                "created_at",
-                "source_name",
-                "fulfilled_at",
-                "taxes_included"
-             ],
-             "title":"Order",
-             "description":"v2 `Order` model Serializer"
-          },
-          "PageInfoSerializer":{
-             "properties":{
-                "has_prev_page":{
-                   "type":"boolean",
-                   "title":"Has Prev Page"
-                },
-                "has_next_page":{
-                   "type":"boolean",
-                   "title":"Has Next Page"
-                },
-                "start_cursor":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Start Cursor"
-                },
-                "end_cursor":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"End Cursor"
-                },
-                "start_index":{
-                   "anyOf":[
-                      {
-                         "type":"integer"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Start Index"
-                },
-                "end_index":{
-                   "anyOf":[
-                      {
-                         "type":"integer"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"End Index"
-                },
-                "total_count":{
-                   "anyOf":[
-                      {
-                         "type":"integer"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Total Count"
-                }
-             },
-             "type":"object",
-             "required":[
-                "has_prev_page",
-                "has_next_page",
-                "start_cursor",
-                "end_cursor",
-                "start_index",
-                "end_index",
-                "total_count"
-             ],
-             "title":"PageInfoSerializer",
-             "description":"PageInfo Serializer"
-          },
-          "RefundTransactionSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"refund_transaction",
-                   "title":"Type",
-                   "default":"refund_transaction"
-                },
-                "platform_id":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Platform Id"
-                },
-                "amount":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "gateway":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Gateway"
-                }
-             },
-             "type":"object",
-             "required":[
-                "platform_id",
-                "amount",
-                "gateway"
-             ],
-             "title":"RefundTransactionSerializer",
-             "description":"v2 `Refund` model Serializer"
-          },
-          "ReturnGroupSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"return_group",
-                   "title":"Type",
-                   "default":"return_group"
-                },
-                "id":{
-                   "type":"integer",
-                   "title":"Id"
-                },
-                "return_method":{
-                   "type":"string",
-                   "title":"Return Method"
-                },
-                "credit_method":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Credit Method"
-                },
-                "created_at":{
-                   "type":"string",
-                   "title":"Created At"
-                },
-                "updated_at":{
-                   "type":"string",
-                   "title":"Updated At"
-                },
-                "order":{
-                   "$ref":"#/components/schemas/OrderSerializer"
-                },
-                "customer":{
-                   "$ref":"#/components/schemas/CustomerSerializer"
-                },
-                "shipments":{
-                   "items":{
-                      "$ref":"#/components/schemas/ShipmentSerializer"
-                   },
-                   "type":"array",
-                   "title":"Shipments"
-                },
-                "returns":{
-                   "items":{
-                      "$ref":"#/components/schemas/ReturnSerializer"
-                   },
-                   "type":"array",
-                   "title":"Returns"
-                },
-                "exchange_line_items":{
-                   "items":{
-                      "$ref":"#/components/schemas/ExchangeLineItemSerializer"
-                   },
-                   "type":"array",
-                   "title":"Exchange Line Items"
-                },
-                "refund_transactions":{
-                   "items":{
-                      "$ref":"#/components/schemas/RefundTransactionSerializer"
-                   },
-                   "type":"array",
-                   "title":"Refund Transactions"
-                },
-                "suggested_refund":{
-                   "$ref":"#/components/schemas/SuggestedRefundSerializer"
-                }
-             },
-             "type":"object",
-             "required":[
-                "id",
-                "return_method",
-                "credit_method",
-                "created_at",
-                "updated_at",
-                "order",
-                "customer",
-                "shipments",
-                "returns",
-                "exchange_line_items",
-                "refund_transactions",
-                "suggested_refund"
-             ],
-             "title":"ReturnGroup",
-             "description":"v2 `ReturnGroup` model Serializer"
-          },
-          "ReturnSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"return",
-                   "title":"Type",
-                   "default":"return"
-                },
-                "id":{
-                   "type":"integer",
-                   "title":"Id"
-                },
-                "platform_id":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Platform Id"
-                },
-                "created_at":{
-                   "type":"string",
-                   "title":"Created At"
-                },
-                "status":{
-                   "type":"string",
-                   "title":"Status"
-                },
-                "shipment_id":{
-                   "anyOf":[
-                      {
-                         "type":"integer"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Shipment Id"
-                },
-                "product_platform_id":{
-                   "type":"string",
-                   "title":"Product Platform Id"
-                },
-                "product_name":{
-                   "type":"string",
-                   "title":"Product Name"
-                },
-                "variant_platform_id":{
-                   "type":"string",
-                   "title":"Variant Platform Id"
-                },
-                "variant_name":{
-                   "type":"string",
-                   "title":"Variant Name"
-                },
-                "sku":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Sku"
-                },
-                "quantity":{
-                   "type":"integer",
-                   "title":"Quantity"
-                },
-                "return_reason":{
-                   "type":"string",
-                   "title":"Return Reason"
-                },
-                "return_note":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Return Note"
-                },
-                "subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "discounted_subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "tax_total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "tax_percentage":{
-                   "type":"number",
-                   "title":"Tax Percentage"
-                },
-                "total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                }
-             },
-             "type":"object",
-             "required":[
-                "id",
-                "platform_id",
-                "created_at",
-                "status",
-                "shipment_id",
-                "product_platform_id",
-                "product_name",
-                "variant_platform_id",
-                "variant_name",
-                "sku",
-                "quantity",
-                "return_reason",
-                "return_note",
-                "subtotal",
-                "discounted_subtotal",
-                "tax_total",
-                "tax_percentage",
-                "total"
-             ],
-             "title":"Return",
-             "description":"v2 `Return` model Serializer"
-          },
-          "ShipmentSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"shipment",
-                   "title":"Type",
-                   "default":"shipment"
-                },
-                "id":{
-                   "type":"integer",
-                   "title":"Id"
-                },
-                "status":{
-                   "type":"string",
-                   "title":"Status"
-                },
-                "carrier":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Carrier"
-                },
-                "tracking_number":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Tracking Number"
-                },
-                "created_at":{
-                   "type":"string",
-                   "title":"Created At"
-                }
-             },
-             "type":"object",
-             "required":[
-                "id",
-                "status",
-                "carrier",
-                "tracking_number",
-                "created_at"
-             ],
-             "title":"Shipment",
-             "description":"v2 `Shipment` model Serializer"
-          },
-          "SuggestedRefundSerializer":{
-             "properties":{
-                "type":{
-                   "type":"string",
-                   "const":"suggested_refund",
-                   "title":"Type",
-                   "default":"suggested_refund"
-                },
-                "refund_total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "return_total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "return_tax_total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "exchange_total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                },
-                "exchange_tax_total":{
-                   "$ref":"#/components/schemas/MoneyBag"
-                }
-             },
-             "type":"object",
-             "required":[
-                "refund_total",
-                "return_total",
-                "return_tax_total",
-                "exchange_total",
-                "exchange_tax_total"
-             ],
-             "title":"SuggestedRefundSerializer",
-             "description":"v2 `SuggestedRefund` serializer based on ReturnGroup"
-          },
-          "ValidationError":{
-             "properties":{
-                "loc":{
-                   "items":{
-                      "anyOf":[
-                         {
-                            "type":"string"
-                         },
-                         {
-                            "type":"integer"
-                         }
-                      ]
-                   },
-                   "type":"array",
-                   "title":"Location"
-                },
-                "msg":{
-                   "type":"string",
-                   "title":"Message"
-                },
-                "type":{
-                   "type":"string",
-                   "title":"Error Type"
-                }
-             },
-             "type":"object",
-             "required":[
-                "loc",
-                "msg",
-                "type"
-             ],
-             "title":"ValidationError"
-          },
-          "ZowieReturnGroupSerializer":{
-             "properties":{
-                "id":{
-                   "type":"integer",
-                   "title":"Id",
-                   "default":0
-                },
-                "shop_name":{
-                   "type":"string",
-                   "title":"Shop Name",
-                   "default":""
-                },
-                "order_platform_id":{
-                   "type":"string",
-                   "title":"Order Platform Id",
-                   "default":""
-                },
-                "order_name":{
-                   "type":"string",
-                   "title":"Order Name",
-                   "default":""
-                },
-                "order_created_at":{
-                   "type":"string",
-                   "title":"Order Created At",
-                   "default":""
-                },
-                "order_sales_channel":{
-                   "type":"string",
-                   "title":"Order Sales Channel",
-                   "default":""
-                },
-                "customer_name":{
-                   "type":"string",
-                   "title":"Customer Name",
-                   "default":""
-                },
-                "customer_email":{
-                   "type":"string",
-                   "title":"Customer Email",
-                   "default":""
-                },
-                "country":{
-                   "type":"string",
-                   "title":"Country",
-                   "default":""
-                },
-                "shipment_status":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Shipment Status"
-                },
-                "carrier":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Carrier"
-                },
-                "tracking_number":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Tracking Number"
-                },
-                "return_method":{
-                   "type":"string",
-                   "title":"Return Method",
-                   "default":""
-                },
-                "credit_method":{
-                   "type":"string",
-                   "title":"Credit Method",
-                   "default":""
-                },
-                "is_exchange":{
-                   "type":"boolean",
-                   "title":"Is Exchange",
-                   "default":false
-                },
-                "is_instant_exchange":{
-                   "type":"boolean",
-                   "title":"Is Instant Exchange",
-                   "default":false
-                },
-                "return_subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "return_discounted_subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "return_tax_total":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "return_total":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "total_refunded":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "gift_card_order_ids":{
-                   "items":{
-                      "type":"string"
-                   },
-                   "type":"array",
-                   "title":"Gift Card Order Ids",
-                   "default":[
-                      
-                   ]
-                },
-                "returns":{
-                   "items":{
-                      "$ref":"#/components/schemas/ZowieReturnSerializer"
-                   },
-                   "type":"array",
-                   "title":"Returns",
-                   "default":[
-                      
-                   ]
-                },
-                "created_at":{
-                   "type":"string",
-                   "title":"Created At",
-                   "default":"1970-01-01T00:00:00Z"
-                },
-                "updated_at":{
-                   "type":"string",
-                   "title":"Updated At",
-                   "default":"1970-01-01T00:00:00Z"
-                },
-                "is_process_allowed":{
-                   "type":"boolean",
-                   "title":"Is Process Allowed",
-                   "default":false
-                },
-                "is_cancel_allowed":{
-                   "type":"boolean",
-                   "title":"Is Cancel Allowed",
-                   "default":false
-                },
-                "is_complete_allowed":{
-                   "type":"boolean",
-                   "title":"Is Complete Allowed",
-                   "default":false
-                },
-                "is_flagged":{
-                   "type":"boolean",
-                   "title":"Is Flagged",
-                   "default":false
-                }
-             },
-             "type":"object",
-             "title":"ReturnGroup",
-             "description":"`ReturnGroup` model Serializer"
-          },
-          "ZowieReturnSerializer":{
-             "properties":{
-                "id":{
-                   "type":"integer",
-                   "title":"Id",
-                   "default":0
-                },
-                "status":{
-                   "type":"string",
-                   "title":"Status",
-                   "default":""
-                },
-                "product_platform_id":{
-                   "type":"string",
-                   "title":"Product Platform Id",
-                   "default":""
-                },
-                "product_name":{
-                   "type":"string",
-                   "title":"Product Name",
-                   "default":""
-                },
-                "variant_platform_id":{
-                   "type":"string",
-                   "title":"Variant Platform Id",
-                   "default":""
-                },
-                "variant_name":{
-                   "type":"string",
-                   "title":"Variant Name",
-                   "default":""
-                },
-                "line_item_platform_id":{
-                   "type":"string",
-                   "title":"Line Item Platform Id",
-                   "default":""
-                },
-                "sku":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Sku"
-                },
-                "quantity":{
-                   "type":"integer",
-                   "title":"Quantity",
-                   "default":1
-                },
-                "shipment_status":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Shipment Status"
-                },
-                "carrier":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Carrier"
-                },
-                "tracking_number":{
-                   "anyOf":[
-                      {
-                         "type":"string"
-                      },
-                      {
-                         "type":"null"
-                      }
-                   ],
-                   "title":"Tracking Number"
-                },
-                "return_reason":{
-                   "type":"string",
-                   "title":"Return Reason",
-                   "default":""
-                },
-                "return_note":{
-                   "type":"string",
-                   "title":"Return Note",
-                   "default":""
-                },
-                "return_subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "return_discounted_subtotal":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "return_tax_total":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "return_total":{
-                   "$ref":"#/components/schemas/MoneyBag",
-                   "default":{
-                      "shop_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      },
-                      "presentment_money":{
-                         "amount":0,
-                         "currency_code":"USD"
-                      }
-                   }
-                },
-                "created_at":{
-                   "type":"string",
-                   "title":"Created At",
-                   "default":"1970-01-01T00:00:00Z"
-                },
-                "updated_at":{
-                   "type":"string",
-                   "title":"Updated At",
-                   "default":"1970-01-01T00:00:00Z"
-                }
-             },
-             "type":"object",
-             "title":"Return",
-             "description":"`Return` model Serializer"
-          }
+     },
+     "/v1/returns-groups/{return_group_id}/cancel": {
+       "post": {
+         "summary": "Zowie Cancel Return Group",
+         "description": "Cancel Return Group",
+         "operationId": "zowie_cancel_return_group_v1_returns_groups__return_group_id__cancel_post",
+         "deprecated": true,
+         "parameters": [
+           {
+             "name": "return_group_id",
+             "in": "path",
+             "required": true,
+             "schema": {
+               "type": "integer",
+               "title": "Return Group Id"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/MessageResponse"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
        }
-    }
-}
+     },
+     "/v1/returns-groups/{return_group_id}/complete": {
+       "post": {
+         "summary": "Zowie Complete Return Group",
+         "description": "Complete Return Group",
+         "operationId": "zowie_complete_return_group_v1_returns_groups__return_group_id__complete_post",
+         "deprecated": true,
+         "parameters": [
+           {
+             "name": "return_group_id",
+             "in": "path",
+             "required": true,
+             "schema": {
+               "type": "integer",
+               "title": "Return Group Id"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/MessageResponse"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       }
+     },
+     "/v1/returns-groups/{return_group_id}/flag": {
+       "post": {
+         "summary": "Zowie Flag Return Group",
+         "description": "Flag Return Group",
+         "operationId": "zowie_flag_return_group_v1_returns_groups__return_group_id__flag_post",
+         "deprecated": true,
+         "parameters": [
+           {
+             "name": "return_group_id",
+             "in": "path",
+             "required": true,
+             "schema": {
+               "type": "integer",
+               "title": "Return Group Id"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/MessageResponse"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       }
+     },
+     "/v2/allowlist-items": {
+       "get": {
+         "tags": [
+           "allowlist-items"
+         ],
+         "summary": "List Allowlist Items",
+         "description": "List AllowlistItems",
+         "operationId": "list_allowlist_items_v2_allowlist_items_get",
+         "parameters": [
+           {
+             "name": "after",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "After"
+             }
+           },
+           {
+             "name": "before",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Before"
+             }
+           },
+           {
+             "name": "order",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "enum": [
+                 "DESC",
+                 "ASC"
+               ],
+               "type": "string",
+               "default": "DESC",
+               "title": "Order"
+             }
+           },
+           {
+             "name": "limit",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "integer"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "default": 100,
+               "title": "Limit"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/AllowlistItemListSerializer"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       },
+       "post": {
+         "tags": [
+           "allowlist-items"
+         ],
+         "summary": "Create Allowlist Item",
+         "description": "Create AllowlistItem",
+         "operationId": "create_allowlist_item_v2_allowlist_items_post",
+         "parameters": [
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "requestBody": {
+           "required": true,
+           "content": {
+             "application/json": {
+               "schema": {
+                 "$ref": "#/components/schemas/AllowlistItemCreateSerializer"
+               }
+             }
+           }
+         },
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/AllowlistItemSerializer"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       }
+     },
+     "/v2/allowlist-items/{allowlist_item_id}": {
+       "delete": {
+         "tags": [
+           "allowlist-items"
+         ],
+         "summary": "Delete Allowlist Item",
+         "description": "Delete AllowlistItem",
+         "operationId": "delete_allowlist_item_v2_allowlist_items__allowlist_item_id__delete",
+         "parameters": [
+           {
+             "name": "allowlist_item_id",
+             "in": "path",
+             "required": true,
+             "schema": {
+               "type": "integer",
+               "title": "Allowlist Item Id"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+ 
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       }
+     },
+     "/v2/deep-links": {
+       "post": {
+         "summary": "Deep Links",
+         "description": "Public API deep links",
+         "operationId": "deep_links_v2_deep_links_post",
+         "parameters": [
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "requestBody": {
+           "required": true,
+           "content": {
+             "application/json": {
+               "schema": {
+                 "$ref": "#/components/schemas/DeepLinkCreateSerializer"
+               }
+             }
+           }
+         },
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/DeepLinkSerializer"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       }
+     },
+     "/v2/return-groups": {
+       "get": {
+         "summary": "Return Groups",
+         "description": "Public API return groups endpoint",
+         "operationId": "return_groups_v2_return_groups_get",
+         "parameters": [
+           {
+             "name": "email",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Email"
+             }
+           },
+           {
+             "name": "order_name",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Order Name"
+             }
+           },
+           {
+             "name": "min_created_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Min Created At"
+             }
+           },
+           {
+             "name": "max_created_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Max Created At"
+             }
+           },
+           {
+             "name": "min_updated_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Min Updated At"
+             }
+           },
+           {
+             "name": "max_updated_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Max Updated At"
+             }
+           },
+           {
+             "name": "min_shipped_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Min Shipped At"
+             }
+           },
+           {
+             "name": "max_shipped_at",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string",
+                   "format": "date-time"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Max Shipped At"
+             }
+           },
+           {
+             "name": "limit",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "integer"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Limit"
+             }
+           },
+           {
+             "name": "offset",
+             "in": "query",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "integer"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "Offset"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "type": "array",
+                   "items": {
+                     "$ref": "#/components/schemas/ReturnGroupSerializer"
+                   },
+                   "title": "Response Return Groups V2 Return Groups Get"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       }
+     }
+   },
+   "components": {
+     "schemas": {
+       "AllowlistItemCreateSerializer": {
+         "properties": {
+           "value": {
+             "type": "string",
+             "minLength": 1,
+             "title": "Value"
+           },
+           "description": {
+             "type": "string",
+             "title": "Description",
+             "default": ""
+           }
+         },
+         "type": "object",
+         "required": [
+           "value"
+         ],
+         "title": "AllowlistItemCreate",
+         "description": "AllowlistItemCreate Serializer\n\nTODO: Add `item_type` when we support multiple item types"
+       },
+       "AllowlistItemListSerializer": {
+         "properties": {
+           "items": {
+             "items": {
+               "$ref": "#/components/schemas/AllowlistItemSerializer"
+             },
+             "type": "array",
+             "title": "Items"
+           },
+           "page_info": {
+             "$ref": "#/components/schemas/PageInfoSerializer"
+           }
+         },
+         "type": "object",
+         "required": [
+           "items",
+           "page_info"
+         ],
+         "title": "AllowlistItemList",
+         "description": "AllowlistItemList Serializer"
+       },
+       "AllowlistItemSerializer": {
+         "properties": {
+           "id": {
+             "type": "integer",
+             "title": "Id"
+           },
+           "value": {
+             "type": "string",
+             "title": "Value"
+           },
+           "description": {
+             "type": "string",
+             "title": "Description",
+             "default": ""
+           },
+           "created_at": {
+             "type": "string",
+             "title": "Created At"
+           }
+         },
+         "type": "object",
+         "required": [
+           "id",
+           "value",
+           "created_at"
+         ],
+         "title": "AllowlistItem",
+         "description": "AllowlistItem Serializer"
+       },
+       "CreditMethodEnum": {
+         "type": "string",
+         "enum": [
+           "STORE_CREDIT",
+           "ORIGINAL_PAYMENT_METHOD"
+         ],
+         "title": "CreditMethodEnum"
+       },
+       "CurrencyCodeEnum": {
+         "type": "string",
+         "enum": [
+           "CAD",
+           "USD",
+           "CNY",
+           "JPY",
+           "AUD",
+           "SGD",
+           "INR",
+           "MXN",
+           "EGP",
+           "ZAR",
+           "BRL",
+           "KRW",
+           "SAR",
+           "ILS",
+           "MNT",
+           "AED",
+           "PHP",
+           "NZD",
+           "HKD",
+           "TWD",
+           "EUR",
+           "GBP",
+           "CHF",
+           "RUB",
+           "SEK",
+           "UAH",
+           "TRY",
+           "RSD",
+           "RON",
+           "PLN",
+           "NOK",
+           "MKD",
+           "MDL",
+           "ISK",
+           "HUF",
+           "GEL",
+           "DKK",
+           "CZK",
+           "BGN",
+           "BAM",
+           "BYN",
+           "AZN",
+           "AMD",
+           "ALL"
+         ],
+         "title": "CurrencyCodeEnum"
+       },
+       "CustomerSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "customer",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "customer"
+           },
+           "name": {
+             "type": "string",
+             "title": "Name",
+             "description": "The customer's full name"
+           },
+           "email": {
+             "type": "string",
+             "title": "Email",
+             "description": "The customer's email address"
+           }
+         },
+         "type": "object",
+         "required": [
+           "name",
+           "email"
+         ],
+         "title": "Customer",
+         "description": "Customer"
+       },
+       "DeepLinkCreateSerializer": {
+         "properties": {
+           "order_name": {
+             "type": "string",
+             "title": "Order Name"
+           },
+           "zip_code_or_email": {
+             "type": "string",
+             "title": "Zip Code Or Email"
+           },
+           "target": {
+             "anyOf": [
+               {
+                 "$ref": "#/components/schemas/DeepLinkTargetEnum"
+               },
+               {
+                 "type": "null"
+               }
+             ]
+           }
+         },
+         "type": "object",
+         "required": [
+           "order_name",
+           "zip_code_or_email"
+         ],
+         "title": "DeepLinkCreate",
+         "description": "v2 `DeepLinkCreate` Serializer"
+       },
+       "DeepLinkSerializer": {
+         "properties": {
+           "url": {
+             "type": "string",
+             "title": "Url"
+           }
+         },
+         "type": "object",
+         "required": [
+           "url"
+         ],
+         "title": "DeepLink",
+         "description": "v2 `DeepLink` Serializer"
+       },
+       "DeepLinkTargetEnum": {
+         "type": "string",
+         "enum": [
+           "RETURN",
+           "RETURN_STATUS"
+         ],
+         "title": "DeepLinkTargetEnum",
+         "description": "DeepLink target."
+       },
+       "ExchangeLineItemSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "exchange_line_item",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "exchange_line_item"
+           },
+           "id": {
+             "type": "string",
+             "title": "Id",
+             "description": "Unique identifier for the exchange line item"
+           },
+           "product_platform_id": {
+             "type": "string",
+             "title": "Product Platform Id",
+             "description": "The product ID from the e-commerce platform"
+           },
+           "product_name": {
+             "type": "string",
+             "title": "Product Name",
+             "description": "The name of the product being exchanged"
+           },
+           "variant_platform_id": {
+             "type": "string",
+             "title": "Variant Platform Id",
+             "description": "The variant ID from the e-commerce platform"
+           },
+           "variant_name": {
+             "type": "string",
+             "title": "Variant Name",
+             "description": "The name of the specific variant being exchanged"
+           },
+           "sku": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Sku",
+             "description": "The SKU (Stock Keeping Unit) of the item being exchanged"
+           },
+           "quantity": {
+             "type": "integer",
+             "title": "Quantity",
+             "description": "The quantity of items being exchanged"
+           },
+           "subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The subtotal amount before discounts and taxes"
+           },
+           "discounted_subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The subtotal amount after discounts but before taxes"
+           },
+           "tax_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total tax amount for this exchange item"
+           },
+           "total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total amount for this exchange item (including taxes and discounts)"
+           }
+         },
+         "type": "object",
+         "required": [
+           "id",
+           "product_platform_id",
+           "product_name",
+           "variant_platform_id",
+           "variant_name",
+           "quantity",
+           "subtotal",
+           "discounted_subtotal",
+           "tax_total",
+           "total"
+         ],
+         "title": "ExchangeLineItem",
+         "description": "ExchangeLineItem"
+       },
+       "HTTPValidationError": {
+         "properties": {
+           "detail": {
+             "items": {
+               "$ref": "#/components/schemas/ValidationError"
+             },
+             "type": "array",
+             "title": "Detail"
+           }
+         },
+         "type": "object",
+         "title": "HTTPValidationError"
+       },
+       "InternalReturnStatusEnum": {
+         "type": "string",
+         "enum": [
+           "IN_REVIEW",
+           "OPEN",
+           "COMPLETED",
+           "CANCELED"
+         ],
+         "title": "InternalReturnStatusEnum"
+       },
+       "MessageResponse": {
+         "properties": {
+           "message": {
+             "type": "string",
+             "title": "Message"
+           }
+         },
+         "type": "object",
+         "required": [
+           "message"
+         ],
+         "title": "MessageResponse"
+       },
+       "MoneyBag": {
+         "properties": {
+           "shop_money": {
+             "$ref": "#/components/schemas/MoneySerializer",
+             "description": "The amount in the shop's currency"
+           },
+           "presentment_money": {
+             "$ref": "#/components/schemas/MoneySerializer",
+             "description": "The amount in the presentment currency"
+           }
+         },
+         "type": "object",
+         "title": "MoneyBag",
+         "description": "MoneyBag"
+       },
+       "MoneySerializer": {
+         "properties": {
+           "amount": {
+             "type": "number",
+             "title": "Amount",
+             "default": 0
+           },
+           "currency_code": {
+             "$ref": "#/components/schemas/CurrencyCodeEnum",
+             "default": "USD"
+           }
+         },
+         "type": "object",
+         "title": "MoneySerializer",
+         "description": "Money"
+       },
+       "OrderSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "order",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "order"
+           },
+           "id": {
+             "type": "integer",
+             "title": "Id",
+             "description": "Unique identifier for the order"
+           },
+           "platform_id": {
+             "type": "string",
+             "title": "Platform Id",
+             "description": "The order ID from the e-commerce platform (e.g., Shopify order ID)"
+           },
+           "name": {
+             "type": "string",
+             "title": "Name",
+             "description": "The order name/number as displayed on the platform"
+           },
+           "created_at": {
+             "type": "string",
+             "title": "Created At",
+             "description": "ISO 8601 timestamp when the order was created on the platform"
+           },
+           "source_name": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Source Name",
+             "description": "The source name of the order (e.g., 'web', 'pos', 'mobile')"
+           },
+           "fulfilled_at": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Fulfilled At",
+             "description": "ISO 8601 timestamp when the order was fulfilled"
+           },
+           "taxes_included": {
+             "type": "boolean",
+             "title": "Taxes Included",
+             "description": "Whether taxes are included in the order total"
+           }
+         },
+         "type": "object",
+         "required": [
+           "id",
+           "platform_id",
+           "name",
+           "created_at",
+           "taxes_included"
+         ],
+         "title": "Order",
+         "description": "Order"
+       },
+       "PageInfoSerializer": {
+         "properties": {
+           "has_prev_page": {
+             "type": "boolean",
+             "title": "Has Prev Page"
+           },
+           "has_next_page": {
+             "type": "boolean",
+             "title": "Has Next Page"
+           },
+           "start_cursor": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Start Cursor"
+           },
+           "end_cursor": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "End Cursor"
+           },
+           "start_index": {
+             "anyOf": [
+               {
+                 "type": "integer"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Start Index"
+           },
+           "end_index": {
+             "anyOf": [
+               {
+                 "type": "integer"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "End Index"
+           },
+           "total_count": {
+             "anyOf": [
+               {
+                 "type": "integer"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Total Count"
+           }
+         },
+         "type": "object",
+         "required": [
+           "has_prev_page",
+           "has_next_page",
+           "start_cursor",
+           "end_cursor",
+           "start_index",
+           "end_index",
+           "total_count"
+         ],
+         "title": "PageInfoSerializer",
+         "description": "PageInfo Serializer"
+       },
+       "RefundTransactionSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "refund_transaction",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "refund_transaction"
+           },
+           "platform_id": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Platform Id",
+             "description": "The transaction ID from the payment platform"
+           },
+           "amount": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The refund amount for this transaction"
+           },
+           "gateway": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Gateway",
+             "description": "The payment gateway used for the refund (e.g., 'stripe', 'paypal')"
+           }
+         },
+         "type": "object",
+         "required": [
+           "amount"
+         ],
+         "title": "RefundTransaction",
+         "description": "RefundTransaction"
+       },
+       "ReturnGroupSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "return_group",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "return_group"
+           },
+           "id": {
+             "type": "integer",
+             "title": "Id",
+             "description": "Unique identifier for the return group"
+           },
+           "return_method": {
+             "$ref": "#/components/schemas/ReturnMethodEnum",
+             "description": "The method used for the return"
+           },
+           "credit_method": {
+             "anyOf": [
+               {
+                 "$ref": "#/components/schemas/CreditMethodEnum"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "description": "The method used for crediting the customer"
+           },
+           "created_at": {
+             "type": "string",
+             "title": "Created At",
+             "description": "ISO 8601 timestamp when the return group was created"
+           },
+           "updated_at": {
+             "type": "string",
+             "title": "Updated At",
+             "description": "ISO 8601 timestamp when the return group was last updated"
+           },
+           "order": {
+             "$ref": "#/components/schemas/OrderSerializer",
+             "description": "The associated order for this return group"
+           },
+           "customer": {
+             "$ref": "#/components/schemas/CustomerSerializer",
+             "description": "The customer who initiated the return"
+           },
+           "shipments": {
+             "items": {
+               "$ref": "#/components/schemas/ShipmentSerializer"
+             },
+             "type": "array",
+             "title": "Shipments",
+             "description": "List of shipments associated with the returns in this group"
+           },
+           "returns": {
+             "items": {
+               "$ref": "#/components/schemas/ReturnLineItemSerializer"
+             },
+             "type": "array",
+             "title": "Returns",
+             "description": "List of individual returns that make up this return group"
+           },
+           "exchange_line_items": {
+             "items": {
+               "$ref": "#/components/schemas/ExchangeLineItemSerializer"
+             },
+             "type": "array",
+             "title": "Exchange Line Items",
+             "description": "Line items for exchanges if the customer chose to exchange items"
+           },
+           "refund_transactions": {
+             "items": {
+               "$ref": "#/components/schemas/RefundTransactionSerializer"
+             },
+             "type": "array",
+             "title": "Refund Transactions",
+             "description": "List of refund transactions processed for this return group"
+           },
+           "suggested_refund": {
+             "$ref": "#/components/schemas/SuggestedRefundSerializer",
+             "description": "Suggested refund amount and breakdown for this return group"
+           }
+         },
+         "type": "object",
+         "required": [
+           "id",
+           "return_method",
+           "created_at",
+           "updated_at",
+           "order",
+           "customer",
+           "shipments",
+           "returns",
+           "exchange_line_items",
+           "refund_transactions",
+           "suggested_refund"
+         ],
+         "title": "ReturnGroup",
+         "description": "ReturnGroup"
+       },
+       "ReturnLineItemSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "return_line_item",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "return_line_item"
+           },
+           "id": {
+             "type": "integer",
+             "title": "Id",
+             "description": "Unique identifier for the return"
+           },
+           "platform_id": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Platform Id",
+             "description": "The return ID from the e-commerce platform"
+           },
+           "created_at": {
+             "type": "string",
+             "title": "Created At",
+             "description": "ISO 8601 timestamp when the return was created"
+           },
+           "status": {
+             "$ref": "#/components/schemas/InternalReturnStatusEnum",
+             "description": "Current status of the return"
+           },
+           "shipment_id": {
+             "anyOf": [
+               {
+                 "type": "integer"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Shipment Id",
+             "description": "ID of the associated shipment for this return"
+           },
+           "product_platform_id": {
+             "type": "string",
+             "title": "Product Platform Id",
+             "description": "The product ID from the e-commerce platform"
+           },
+           "product_name": {
+             "type": "string",
+             "title": "Product Name",
+             "description": "The name of the product being returned"
+           },
+           "variant_platform_id": {
+             "type": "string",
+             "title": "Variant Platform Id",
+             "description": "The variant ID from the e-commerce platform"
+           },
+           "variant_name": {
+             "type": "string",
+             "title": "Variant Name",
+             "description": "The name of the specific variant being returned"
+           },
+           "sku": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Sku",
+             "description": "The SKU (Stock Keeping Unit) of the item being returned"
+           },
+           "quantity": {
+             "type": "integer",
+             "title": "Quantity",
+             "description": "The quantity of items being returned"
+           },
+           "return_reason": {
+             "type": "string",
+             "title": "Return Reason",
+             "description": "The reason provided for the return"
+           },
+           "return_note": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Return Note",
+             "description": "Additional notes provided with the return"
+           },
+           "subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The subtotal amount before discounts and taxes"
+           },
+           "discounted_subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The subtotal amount after discounts but before taxes"
+           },
+           "tax_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total tax amount for this return"
+           },
+           "tax_percentage": {
+             "type": "number",
+             "title": "Tax Percentage",
+             "description": "The tax percentage applied to this return"
+           },
+           "total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total amount for this return (including taxes and discounts)"
+           }
+         },
+         "type": "object",
+         "required": [
+           "id",
+           "created_at",
+           "status",
+           "product_platform_id",
+           "product_name",
+           "variant_platform_id",
+           "variant_name",
+           "quantity",
+           "return_reason",
+           "subtotal",
+           "discounted_subtotal",
+           "tax_total",
+           "tax_percentage",
+           "total"
+         ],
+         "title": "ReturnLineItem",
+         "description": "ReturnLineItem"
+       },
+       "ReturnMethodEnum": {
+         "type": "string",
+         "enum": [
+           "TRADITIONAL",
+           "SELF_SHIP",
+           "STORE_DROP_OFF",
+           "RETURN_BEAR",
+           "HAPPY_RETURNS",
+           "ECODROP"
+         ],
+         "title": "ReturnMethodEnum"
+       },
+       "ShipmentSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "shipment",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "shipment"
+           },
+           "id": {
+             "type": "integer",
+             "title": "Id",
+             "description": "Unique identifier for the shipment"
+           },
+           "status": {
+             "$ref": "#/components/schemas/ShipmentStatusEnum",
+             "description": "Current status of the shipment"
+           },
+           "carrier": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Carrier",
+             "description": "The shipping carrier (e.g., 'USPS', 'FedEx', 'UPS')"
+           },
+           "tracking_number": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Tracking Number",
+             "description": "The tracking number for the shipment"
+           },
+           "created_at": {
+             "type": "string",
+             "title": "Created At",
+             "description": "ISO 8601 timestamp when the shipment was created"
+           }
+         },
+         "type": "object",
+         "required": [
+           "id",
+           "status",
+           "created_at"
+         ],
+         "title": "Shipment",
+         "description": "Shipment"
+       },
+       "ShipmentStatusEnum": {
+         "type": "string",
+         "enum": [
+           "DRAFT",
+           "CREATED",
+           "IN_TRANSIT",
+           "DELIVERED",
+           "FAILED",
+           "CANCELED",
+           "UNKNOWN"
+         ],
+         "title": "ShipmentStatusEnum"
+       },
+       "SuggestedRefundSerializer": {
+         "properties": {
+           "type": {
+             "type": "string",
+             "const": "suggested_refund",
+             "title": "Type",
+             "description": "The type identifier for this resource",
+             "default": "suggested_refund"
+           },
+           "refund_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total suggested refund amount for the return group"
+           },
+           "return_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total value of items being returned"
+           },
+           "return_tax_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total tax amount for returned items"
+           },
+           "exchange_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total value of items being exchanged"
+           },
+           "exchange_tax_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "description": "The total tax amount for exchanged items"
+           }
+         },
+         "type": "object",
+         "required": [
+           "refund_total",
+           "return_total",
+           "return_tax_total",
+           "exchange_total",
+           "exchange_tax_total"
+         ],
+         "title": "SuggestedRefund",
+         "description": "SuggestedRefund"
+       },
+       "ValidationError": {
+         "properties": {
+           "loc": {
+             "items": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "integer"
+                 }
+               ]
+             },
+             "type": "array",
+             "title": "Location"
+           },
+           "msg": {
+             "type": "string",
+             "title": "Message"
+           },
+           "type": {
+             "type": "string",
+             "title": "Error Type"
+           }
+         },
+         "type": "object",
+         "required": [
+           "loc",
+           "msg",
+           "type"
+         ],
+         "title": "ValidationError"
+       },
+       "ZowieReturnGroupSerializer": {
+         "properties": {
+           "id": {
+             "type": "integer",
+             "title": "Id",
+             "default": 0
+           },
+           "shop_name": {
+             "type": "string",
+             "title": "Shop Name",
+             "default": ""
+           },
+           "order_platform_id": {
+             "type": "string",
+             "title": "Order Platform Id",
+             "default": ""
+           },
+           "order_name": {
+             "type": "string",
+             "title": "Order Name",
+             "default": ""
+           },
+           "order_created_at": {
+             "type": "string",
+             "title": "Order Created At",
+             "default": ""
+           },
+           "order_sales_channel": {
+             "type": "string",
+             "title": "Order Sales Channel",
+             "default": ""
+           },
+           "customer_name": {
+             "type": "string",
+             "title": "Customer Name",
+             "default": ""
+           },
+           "customer_email": {
+             "type": "string",
+             "title": "Customer Email",
+             "default": ""
+           },
+           "country": {
+             "type": "string",
+             "title": "Country",
+             "default": ""
+           },
+           "shipment_status": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Shipment Status"
+           },
+           "carrier": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Carrier"
+           },
+           "tracking_number": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Tracking Number"
+           },
+           "return_method": {
+             "type": "string",
+             "title": "Return Method",
+             "default": ""
+           },
+           "credit_method": {
+             "type": "string",
+             "title": "Credit Method",
+             "default": ""
+           },
+           "is_exchange": {
+             "type": "boolean",
+             "title": "Is Exchange",
+             "default": false
+           },
+           "is_instant_exchange": {
+             "type": "boolean",
+             "title": "Is Instant Exchange",
+             "default": false
+           },
+           "return_subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "return_discounted_subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "return_tax_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "return_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "total_refunded": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "gift_card_order_ids": {
+             "items": {
+               "type": "string"
+             },
+             "type": "array",
+             "title": "Gift Card Order Ids",
+             "default": []
+           },
+           "returns": {
+             "items": {
+               "$ref": "#/components/schemas/ZowieReturnSerializer"
+             },
+             "type": "array",
+             "title": "Returns",
+             "default": []
+           },
+           "created_at": {
+             "type": "string",
+             "title": "Created At",
+             "default": "1970-01-01T00:00:00Z"
+           },
+           "updated_at": {
+             "type": "string",
+             "title": "Updated At",
+             "default": "1970-01-01T00:00:00Z"
+           },
+           "is_process_allowed": {
+             "type": "boolean",
+             "title": "Is Process Allowed",
+             "default": false
+           },
+           "is_cancel_allowed": {
+             "type": "boolean",
+             "title": "Is Cancel Allowed",
+             "default": false
+           },
+           "is_complete_allowed": {
+             "type": "boolean",
+             "title": "Is Complete Allowed",
+             "default": false
+           },
+           "is_flagged": {
+             "type": "boolean",
+             "title": "Is Flagged",
+             "default": false
+           }
+         },
+         "type": "object",
+         "title": "ReturnGroup",
+         "description": "`ReturnGroup` model Serializer"
+       },
+       "ZowieReturnSerializer": {
+         "properties": {
+           "id": {
+             "type": "integer",
+             "title": "Id",
+             "default": 0
+           },
+           "status": {
+             "type": "string",
+             "title": "Status",
+             "default": ""
+           },
+           "product_platform_id": {
+             "type": "string",
+             "title": "Product Platform Id",
+             "default": ""
+           },
+           "product_name": {
+             "type": "string",
+             "title": "Product Name",
+             "default": ""
+           },
+           "variant_platform_id": {
+             "type": "string",
+             "title": "Variant Platform Id",
+             "default": ""
+           },
+           "variant_name": {
+             "type": "string",
+             "title": "Variant Name",
+             "default": ""
+           },
+           "line_item_platform_id": {
+             "type": "string",
+             "title": "Line Item Platform Id",
+             "default": ""
+           },
+           "sku": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Sku"
+           },
+           "quantity": {
+             "type": "integer",
+             "title": "Quantity",
+             "default": 1
+           },
+           "shipment_status": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Shipment Status"
+           },
+           "carrier": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Carrier"
+           },
+           "tracking_number": {
+             "anyOf": [
+               {
+                 "type": "string"
+               },
+               {
+                 "type": "null"
+               }
+             ],
+             "title": "Tracking Number"
+           },
+           "return_reason": {
+             "type": "string",
+             "title": "Return Reason",
+             "default": ""
+           },
+           "return_note": {
+             "type": "string",
+             "title": "Return Note",
+             "default": ""
+           },
+           "return_subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "return_discounted_subtotal": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "return_tax_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "return_total": {
+             "$ref": "#/components/schemas/MoneyBag",
+             "default": {
+               "shop_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               },
+               "presentment_money": {
+                 "amount": 0,
+                 "currency_code": "USD"
+               }
+             }
+           },
+           "created_at": {
+             "type": "string",
+             "title": "Created At",
+             "default": "1970-01-01T00:00:00Z"
+           },
+           "updated_at": {
+             "type": "string",
+             "title": "Updated At",
+             "default": "1970-01-01T00:00:00Z"
+           }
+         },
+         "type": "object",
+         "title": "Return",
+         "description": "`Return` model Serializer"
+       }
+     }
+   }
+ }
