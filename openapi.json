@@ -959,6 +959,126 @@
            }
          }
        }
+     },
+     "/v2/shipments/{shipment_id}": {
+       "get": {
+         "summary": "Get Shipment",
+         "description": "Get Shipment",
+         "operationId": "get_shipment_v2_shipments__shipment_id__get",
+         "parameters": [
+           {
+             "name": "shipment_id",
+             "in": "path",
+             "required": true,
+             "schema": {
+               "type": "integer",
+               "title": "Shipment Id"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/ShipmentSerializer"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       },
+       "put": {
+         "summary": "Update Shipment",
+         "description": "Update Shipment",
+         "operationId": "update_shipment_v2_shipments__shipment_id__put",
+         "parameters": [
+           {
+             "name": "shipment_id",
+             "in": "path",
+             "required": true,
+             "schema": {
+               "type": "integer",
+               "title": "Shipment Id"
+             }
+           },
+           {
+             "name": "x-frate-api-token",
+             "in": "header",
+             "required": false,
+             "schema": {
+               "anyOf": [
+                 {
+                   "type": "string"
+                 },
+                 {
+                   "type": "null"
+                 }
+               ],
+               "title": "X-Frate-Api-Token"
+             }
+           }
+         ],
+         "requestBody": {
+           "required": true,
+           "content": {
+             "application/json": {
+               "schema": {
+                 "$ref": "#/components/schemas/ShipmentUpdateSerializer"
+               }
+             }
+           }
+         },
+         "responses": {
+           "200": {
+             "description": "Successful Response",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/ShipmentSerializer"
+                 }
+               }
+             }
+           },
+           "422": {
+             "description": "Validation Error",
+             "content": {
+               "application/json": {
+                 "schema": {
+                   "$ref": "#/components/schemas/HTTPValidationError"
+                 }
+               }
+             }
+           }
+         }
+       }
      }
    },
    "components": {
@@ -1841,6 +1961,20 @@
            "UNKNOWN"
          ],
          "title": "ShipmentStatusEnum"
+       },
+       "ShipmentUpdateSerializer": {
+         "properties": {
+           "status": {
+             "$ref": "#/components/schemas/ShipmentStatusEnum",
+             "description": "The status to update the shipment to"
+           }
+         },
+         "type": "object",
+         "required": [
+           "status"
+         ],
+         "title": "ShipmentUpdateInput",
+         "description": "Shipment Update Input"
        },
        "SuggestedRefundSerializer": {
          "properties": {
