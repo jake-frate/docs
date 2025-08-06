@@ -1291,28 +1291,6 @@
          "title": "DeepLinkTargetEnum",
          "description": "DeepLink target."
        },
-       "ExchangeFulfillmentOrderSerializer": {
-         "properties": {
-           "type": {
-             "type": "string",
-             "const": "exchange_fulfillment_order",
-             "title": "Type",
-             "description": "The type identifier for this resource",
-             "default": "exchange_fulfillment_order"
-           },
-           "platform_id": {
-             "type": "string",
-             "title": "Platform Id",
-             "description": "The FulfillmentOrder ID from the e-commerce platform (e.g., Shopify FulfillmentOrder ID)"
-           }
-         },
-         "type": "object",
-         "required": [
-           "platform_id"
-         ],
-         "title": "ExchangeFulfillmentOrder",
-         "description": "ExchangeFulfillmentOrder"
-       },
        "ExchangeLineItemSerializer": {
          "properties": {
            "type": {
@@ -1729,14 +1707,6 @@
              "title": "Exchange Line Items",
              "description": "Line items for exchanges if the customer chose to exchange items"
            },
-           "exchange_fulfillment_orders": {
-             "items": {
-               "$ref": "#/components/schemas/ExchangeFulfillmentOrderSerializer"
-             },
-             "type": "array",
-             "title": "Exchange Fulfillment Orders",
-             "description": "List of fulfillment orders for exchanges"
-           },
            "refund_transactions": {
              "items": {
                "$ref": "#/components/schemas/RefundTransactionSerializer"
@@ -1761,7 +1731,6 @@
            "shipments",
            "returns",
            "exchange_line_items",
-           "exchange_fulfillment_orders",
            "refund_transactions",
            "suggested_refund"
          ],
