@@ -1354,6 +1354,11 @@
              "$ref": "#/components/schemas/MoneyBag",
              "description": "The total tax amount for this exchange item"
            },
+           "tax_percentage": {
+             "type": "number",
+             "title": "Tax Percentage",
+             "description": "The total tax percentage for this exchange item (expressed as a percentage, not a decimal)"
+           },
            "total": {
              "$ref": "#/components/schemas/MoneyBag",
              "description": "The total amount for this exchange item (including taxes and discounts)"
@@ -1370,6 +1375,7 @@
            "subtotal",
            "discounted_subtotal",
            "tax_total",
+           "tax_percentage",
            "total"
          ],
          "title": "ExchangeLineItem",
