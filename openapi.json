@@ -2070,6 +2070,17 @@
               }
             ],
             "description": "The origin address for the shipment"
+          },
+          "destination_address": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AddressSerializer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The destination address for the shipment"
           }
         },
         "type": "object",
