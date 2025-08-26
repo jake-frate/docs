@@ -992,6 +992,67 @@
         }
       }
     },
+    "/v2/submit-return-group-review": {
+      "post": {
+        "summary": "Submit Return Group Review",
+        "description": "Public API submit return group review endpoint",
+        "operationId": "submit_return_group_review_v2_submit_return_group_review_post",
+        "parameters": [
+          {
+            "name": "x-frate-api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Frate-Api-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitReturnGroupReviewInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReturnLineItemSerializer"
+                  },
+                  "title": "Response Submit Return Group Review V2 Submit Return Group Review Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v2/shipments/{shipment_id}": {
       "get": {
         "summary": "Get Shipment",
@@ -2013,6 +2074,15 @@
         ],
         "title": "ReturnMethodEnum"
       },
+      "ReturnReviewDecisionEnum": {
+        "type": "string",
+        "enum": [
+          "APPROVED",
+          "DECLINED",
+          "NO_DECISION"
+        ],
+        "title": "ReturnReviewDecisionEnum"
+      },
       "ShipmentSerializer": {
         "properties": {
           "type": {
@@ -2118,6 +2188,50 @@
         ],
         "title": "ShipmentUpdateInput",
         "description": "Shipment Update Input"
+      },
+      "SubmitReturnGroupReviewInput": {
+        "properties": {
+          "return_group_id": {
+            "type": "integer",
+            "title": "Return Group Id",
+            "description": "The ID of the return group to review"
+          },
+          "returns": {
+            "items": {
+              "$ref": "#/components/schemas/SubmitReturnReviewInput"
+            },
+            "type": "array",
+            "title": "Returns",
+            "description": "The returns to review"
+          }
+        },
+        "type": "object",
+        "required": [
+          "return_group_id",
+          "returns"
+        ],
+        "title": "SubmitReturnGroupReviewInput",
+        "description": "Input serializer for reviewing a return group"
+      },
+      "SubmitReturnReviewInput": {
+        "properties": {
+          "return_id": {
+            "type": "integer",
+            "title": "Return Id",
+            "description": "The ID of the return to review"
+          },
+          "review_decision": {
+            "$ref": "#/components/schemas/ReturnReviewDecisionEnum",
+            "description": "The review decision for the return"
+          }
+        },
+        "type": "object",
+        "required": [
+          "return_id",
+          "review_decision"
+        ],
+        "title": "SubmitReturnReviewInput",
+        "description": "Input serializer for reviewing a single return"
       },
       "SuggestedRefundSerializer": {
         "properties": {
