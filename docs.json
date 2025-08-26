@@ -32,7 +32,8 @@
               "api-reference/endpoints/create-allowlist-item",
               "api-reference/endpoints/list-allowlist-items",
               "api-reference/endpoints/get-shipment",
-              "api-reference/endpoints/update-shipment"
+              "api-reference/endpoints/update-shipment",
+              "api-reference/endpoints/submit-return-group-review"
             ]
           }
         ]
