@@ -1234,6 +1234,34 @@
         "title": "Address",
         "description": "Address"
       },
+      "AllowedActionsEnum": {
+        "type": "string",
+        "enum": [
+          "EXCHANGE",
+          "REFUND_ORIGINAL_PAYMENT_METHOD",
+          "REFUND_STORE_CREDIT"
+        ],
+        "title": "AllowedActionsEnum",
+        "description": "Allowlist item allowed actions enum."
+      },
+      "AllowedActionsSerializer": {
+        "properties": {
+          "actions": {
+            "items": {
+              "$ref": "#/components/schemas/AllowedActionsEnum"
+            },
+            "type": "array",
+            "title": "Actions",
+            "default": [
+              "EXCHANGE",
+              "REFUND_ORIGINAL_PAYMENT_METHOD",
+              "REFUND_STORE_CREDIT"
+            ]
+          }
+        },
+        "type": "object",
+        "title": "AllowedActionsSerializer"
+      },
       "AllowlistItemCreateSerializer": {
         "properties": {
           "value": {
@@ -1293,13 +1321,24 @@
           "created_at": {
             "type": "string",
             "title": "Created At"
+          },
+          "allowed_actions": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AllowedActionsSerializer"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
         "required": [
           "id",
           "value",
-          "created_at"
+          "created_at",
+          "allowed_actions"
         ],
         "title": "AllowlistItem",
         "description": "AllowlistItem Serializer"
@@ -1761,6 +1800,53 @@
         "title": "PageInfoSerializer",
         "description": "PageInfo Serializer"
       },
+      "QuestionAnswerSerializer": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "question_answer",
+            "title": "Type",
+            "description": "The type identifier for this resource",
+            "default": "question_answer"
+          },
+          "question_text": {
+            "type": "string",
+            "title": "Question Text",
+            "description": "The question text"
+          },
+          "question_description": {
+            "type": "string",
+            "title": "Question Description",
+            "description": "The question description"
+          },
+          "question_type": {
+            "type": "string",
+            "enum": [
+              "TEXT",
+              "SELECT"
+            ],
+            "title": "Question Type",
+            "description": "The type of question"
+          },
+          "answers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Answers",
+            "description": "The text answer or selected options"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question_text",
+          "question_description",
+          "question_type",
+          "answers"
+        ],
+        "title": "QuestionAnswer",
+        "description": "QuestionAnswer"
+      },
       "RefundTransactionSerializer": {
         "properties": {
           "type": {
@@ -2006,7 +2092,8 @@
           "return_reason": {
             "type": "string",
             "title": "Return Reason",
-            "description": "The reason provided for the return"
+            "description": "The reason provided for the return",
+            "deprecated": true
           },
           "return_note": {
             "anyOf": [
@@ -2018,7 +2105,20 @@
               }
             ],
             "title": "Return Note",
-            "description": "Additional notes provided with the return"
+            "description": "Additional notes provided with the return",
+            "deprecated": true
+          },
+          "return_reason_details": {
+            "$ref": "#/components/schemas/ReturnReasonSerializer",
+            "description": "The details of the reason provided for the return"
+          },
+          "questions_answers": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionAnswerSerializer"
+            },
+            "type": "array",
+            "title": "Questions Answers",
+            "description": "The questions and answers provided for the return"
           },
           "subtotal": {
             "$ref": "#/components/schemas/MoneyBag",
@@ -2053,6 +2153,8 @@
           "variant_name",
           "quantity",
           "return_reason",
+          "return_reason_details",
+          "questions_answers",
           "subtotal",
           "discounted_subtotal",
           "tax_total",
@@ -2070,9 +2172,54 @@
           "STORE_DROP_OFF",
           "RETURN_BEAR",
           "HAPPY_RETURNS",
+          "GLOBAL_E",
           "ECODROP"
         ],
         "title": "ReturnMethodEnum"
+      },
+      "ReturnReasonSerializer": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "return_reason",
+            "title": "Type",
+            "description": "The type identifier for this resource",
+            "default": "return_reason"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value",
+            "description": "The reason provided for the return"
+          },
+          "path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Path",
+            "description": "The path to the reason in reasons tree"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note",
+            "description": "Additional notes provided by user for the return"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "path",
+          "note"
+        ],
+        "title": "ReturnReason",
+        "description": "ReturnReason"
       },
       "ReturnReviewDecisionEnum": {
         "type": "string",
@@ -2151,6 +2298,30 @@
               }
             ],
             "description": "The destination address for the shipment"
+          },
+          "shipped_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shipped At",
+            "description": "ISO 8601 timestamp when the shipment was shipped"
+          },
+          "delivered_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivered At",
+            "description": "ISO 8601 timestamp when the shipment was delivered"
           }
         },
         "type": "object",
