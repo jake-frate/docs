@@ -18,6 +18,22 @@
         "deprecated": true,
         "parameters": [
           {
+            "name": "return_group_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Return Group Id"
+            }
+          },
+          {
             "name": "email",
             "in": "query",
             "required": false,
@@ -34,6 +50,22 @@
             }
           },
           {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Order Id"
+            }
+          },
+          {
             "name": "order_name",
             "in": "query",
             "required": false,
@@ -47,22 +79,6 @@
                 }
               ],
               "title": "Order Name"
-            }
-          },
-          {
-            "name": "return_group_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Return Group Id"
             }
           },
           {
@@ -766,6 +782,22 @@
         "operationId": "return_groups_v2_return_groups_get",
         "parameters": [
           {
+            "name": "return_group_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Return Group Id"
+            }
+          },
+          {
             "name": "email",
             "in": "query",
             "required": false,
@@ -782,6 +814,22 @@
             }
           },
           {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Order Id"
+            }
+          },
+          {
             "name": "order_name",
             "in": "query",
             "required": false,
@@ -795,22 +843,6 @@
                 }
               ],
               "title": "Order Name"
-            }
-          },
-          {
-            "name": "return_group_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "Return Group Id"
             }
           },
           {
@@ -1036,6 +1068,72 @@
                     "$ref": "#/components/schemas/ReturnLineItemSerializer"
                   },
                   "title": "Response Submit Return Group Review V2 Submit Return Group Review Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/return-groups/{return_group_id}/emails": {
+      "post": {
+        "summary": "Resend Email",
+        "description": "Public API resend email for return group endpoint",
+        "operationId": "resend_email_v2_return_groups__return_group_id__emails_post",
+        "parameters": [
+          {
+            "name": "return_group_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Return Group Id"
+            }
+          },
+          {
+            "name": "x-frate-api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Frate-Api-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendEmailInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
                 }
               }
             }
@@ -1374,6 +1472,12 @@
           "NZD",
           "HKD",
           "TWD",
+          "NGN",
+          "SLE",
+          "SLL",
+          "QAR",
+          "MYR",
+          "THB",
           "EUR",
           "GBP",
           "CHF",
@@ -1583,6 +1687,13 @@
         ],
         "title": "ExchangeLineItem",
         "description": "ExchangeLineItem"
+      },
+      "ExternalEmailTypeEnum": {
+        "type": "string",
+        "enum": [
+          "SHIP_BACK_REQUEST"
+        ],
+        "title": "ExternalEmailTypeEnum"
       },
       "HTTPValidationError": {
         "properties": {
@@ -1892,6 +2003,20 @@
         "title": "RefundTransaction",
         "description": "RefundTransaction"
       },
+      "ResendEmailInput": {
+        "properties": {
+          "email_type": {
+            "$ref": "#/components/schemas/ExternalEmailTypeEnum",
+            "description": "The type of email to resend"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email_type"
+        ],
+        "title": "ResendEmailInput",
+        "description": "Input serializer for reviewing a return group"
+      },
       "ReturnGroupSerializer": {
         "properties": {
           "type": {
@@ -2040,6 +2165,11 @@
             "title": "Shipment Id",
             "description": "ID of the associated shipment for this return"
           },
+          "platform_line_item_id": {
+            "type": "string",
+            "title": "Platform Line Item Id",
+            "description": "The line item ID from the e-commerce platform"
+          },
           "product_platform_id": {
             "type": "string",
             "title": "Product Platform Id",
@@ -2147,6 +2277,7 @@
           "id",
           "created_at",
           "status",
+          "platform_line_item_id",
           "product_platform_id",
           "product_name",
           "variant_platform_id",
