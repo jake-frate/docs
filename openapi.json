@@ -1612,6 +1612,18 @@
             "title": "Id",
             "description": "Unique identifier for the exchange line item"
           },
+          "line_item_platform_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Line Item Platform Id",
+            "description": "The line item ID from the e-commerce platform. Note: This is only set for exchanges using the exchange API once the exchange has been processed"
+          },
           "product_platform_id": {
             "type": "string",
             "title": "Product Platform Id",
@@ -1674,6 +1686,7 @@
         "type": "object",
         "required": [
           "id",
+          "line_item_platform_id",
           "product_platform_id",
           "product_name",
           "variant_platform_id",
