@@ -1656,6 +1656,10 @@
             "title": "Sku",
             "description": "The SKU (Stock Keeping Unit) of the item being exchanged"
           },
+          "status": {
+            "$ref": "#/components/schemas/ExchangeLineItemStatusEnum",
+            "description": "The status of the exchange line item"
+          },
           "quantity": {
             "type": "integer",
             "title": "Quantity",
@@ -1691,6 +1695,7 @@
           "product_name",
           "variant_platform_id",
           "variant_name",
+          "status",
           "quantity",
           "subtotal",
           "discounted_subtotal",
@@ -1700,6 +1705,15 @@
         ],
         "title": "ExchangeLineItem",
         "description": "ExchangeLineItem"
+      },
+      "ExchangeLineItemStatusEnum": {
+        "type": "string",
+        "enum": [
+          "UNPROCESSED",
+          "PROCESSED",
+          "CANCELED"
+        ],
+        "title": "ExchangeLineItemStatusEnum"
       },
       "ExternalEmailTypeEnum": {
         "type": "string",
