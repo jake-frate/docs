@@ -1673,6 +1673,10 @@
             "$ref": "#/components/schemas/MoneyBag",
             "description": "The subtotal amount after discounts but before taxes"
           },
+          "discount_total": {
+            "$ref": "#/components/schemas/MoneyBag",
+            "description": "The total discount amount for this exchange item"
+          },
           "tax_total": {
             "$ref": "#/components/schemas/MoneyBag",
             "description": "The total tax amount for this exchange item"
@@ -1699,6 +1703,7 @@
           "quantity",
           "subtotal",
           "discounted_subtotal",
+          "discount_total",
           "tax_total",
           "tax_percentage",
           "total"
@@ -2285,6 +2290,10 @@
             "$ref": "#/components/schemas/MoneyBag",
             "description": "The subtotal amount after discounts but before taxes"
           },
+          "discount_total": {
+            "$ref": "#/components/schemas/MoneyBag",
+            "description": "The total discount amount for this return"
+          },
           "tax_total": {
             "$ref": "#/components/schemas/MoneyBag",
             "description": "The total tax amount for this return"
@@ -2315,6 +2324,7 @@
           "questions_answers",
           "subtotal",
           "discounted_subtotal",
+          "discount_total",
           "tax_total",
           "tax_percentage",
           "total"
@@ -2590,6 +2600,18 @@
           "exchange_tax_total": {
             "$ref": "#/components/schemas/MoneyBag",
             "description": "The total tax amount for exchanged items"
+          },
+          "handling_fee": {
+            "$ref": "#/components/schemas/MoneyBag",
+            "description": "The handling fee for the return group"
+          },
+          "shipping_fee": {
+            "$ref": "#/components/schemas/MoneyBag",
+            "description": "The shipping fee for the return group"
+          },
+          "store_credit_incentive": {
+            "$ref": "#/components/schemas/MoneyBag",
+            "description": "The store credit incentive for the return group"
           }
         },
         "type": "object",
@@ -2598,7 +2620,10 @@
           "return_total",
           "return_tax_total",
           "exchange_total",
-          "exchange_tax_total"
+          "exchange_tax_total",
+          "handling_fee",
+          "shipping_fee",
+          "store_credit_incentive"
         ],
         "title": "SuggestedRefund",
         "description": "SuggestedRefund"
