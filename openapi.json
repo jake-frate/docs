@@ -2194,6 +2194,17 @@
             "title": "Updated At",
             "description": "ISO 8601 timestamp when the return group was last updated"
           },
+          "return_outcome": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReturnOutcomeEnum"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The outcome of the return"
+          },
           "order": {
             "$ref": "#/components/schemas/OrderSerializer",
             "description": "The associated order for this return group"
@@ -2245,6 +2256,7 @@
           "return_method",
           "created_at",
           "updated_at",
+          "return_outcome",
           "order",
           "customer",
           "shipments",
@@ -2459,6 +2471,18 @@
           "ECODROP"
         ],
         "title": "ReturnMethodEnum"
+      },
+      "ReturnOutcomeEnum": {
+        "type": "string",
+        "enum": [
+          "credit",
+          "refund",
+          "exchange+refund",
+          "exchange",
+          "exchange+credit",
+          "upsell"
+        ],
+        "title": "ReturnOutcomeEnum"
       },
       "ReturnReasonSerializer": {
         "properties": {
