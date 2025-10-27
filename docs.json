@@ -43,17 +43,9 @@
         "tab": "Webhook Reference",
         "groups": [
           {
-            "group": "Webhook Reference",
+            "group": "Overview",
             "pages": [
-              "webhook-reference/getting-started",
-              "webhook-reference/create-a-webhook-subscription",
-              "webhook-reference/validate-webhooks-from-frate"
-            ]
-          },
-          {
-            "group": "Webhook Payloads",
-            "pages": [
-              "webhook-reference/webhook-payloads/return"
+              "webhook-reference/basic-usage"
             ]
           }
         ]
