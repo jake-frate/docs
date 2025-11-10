@@ -1,0 +1,27 @@
+---
+title: 'ERP Software'
+description: ''
+--- 
+
+## Who is this for?
+You **work with returns data** for a Shopify brand. You are most likely a developer that works directly for a brand, or a third-party consultant who is helping a brand integrate Frate with their ERP.
+
+
+## Overview
+
+When integrating Frate data with an ERP system, there are two core integration points to be considered:
+1. Letting the ERP system know when a **return is created** (and subsequently processed or cancelled)
+2. (Optional) Letting Frate know when the ERP system has **marked a return as reviewed** (either approved or cancelled)
+
+### 1. Frate -> ERP: Return Created
+
+There are two ways that Frate's enterprise brands implement this first integration point to know about recently created returns (or recently scanned shipments):
+1. Create a [webhook subscription](/webhook-reference/basic-usage)
+2. Create a periodic sync to the [ReturnGroup API](/api-reference/endpoints/return-groups) 
+
+In their case, it is the brand's responsibility to ingest Frate's data, and create the desired records in the ERP system tailored to their internal processes.
+
+### 2. ERP -> Frate: Return Reviewed
+
+If the brand has their own internal system for marking returns as reviewed, then they need to communicate that event to Frate via the [Submit Return Group Review API](/api-reference/endpoints/submit-return-group-review).
+
