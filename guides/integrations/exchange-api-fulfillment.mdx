@@ -1,0 +1,56 @@
+---
+title: 'Exchange API Fulfillment'
+description: ''
+--- 
+
+## Who is this for?
+You manage **outbound fulfillment of exchanges** for a Shopify brand. You are most likely a developer that works directly for a brand, or a 3PL that fulfills orders for a brand.
+
+
+## Overview
+
+When managing outbound fulfillment of exchanges, there are three key points in the Return Lifecycle to be considered:
+1. Return In Progress, Exchange Unreleased
+2. Return In Progress, Exchange Processed & Released
+3. Return Processed
+
+### 1. Return In Progress, Exchange Unreleased
+
+At this point, the Return has been approved by the merchant, but it is not yet processed. 
+This means the merchant is expecting to receive the Return and process the Exchange, but is waiting for some event to release the Exchange and add it to "Committed" Inventory.
+Since the Exchange is "Unreleased", it is not yet a LineItem on the Order, and thus is **not visible in any Inventory Adjustments**.
+
+![Stage 1 Activity](/images/return-created-activity.png)
+
+![Exchange Unreleased](/images/exchange-unreleased.png)
+
+### 2. Return In Progress, Exchange Processed & Released
+
+At this stage, the Return is still pending processing, while the Exchange is processed and released, thus **ready to be fulfilled**.
+The LineItem has now been created on the Order, and Inventory Level has moved from "Available" to "Committed".
+
+![Stage 2 Activity](/images/exchange-processed-activity.png)
+
+![Exchange Released](/images/exchange-released.png)
+
+![Exchange Inventory Adjustment](/images/exchange-inventory-adjustment.png)
+
+Note that since the Exchange was Processed before the Return, there is currently a Sales Agreement for the Exchange but not yet for the Return.
+This results in the Order's Financial Summary appearing "Partially paid", and this will resolve itself once the Return is Processed.
+
+![Partially Paid](/images/partially-paid-while-return-in-progress.png)
+
+### 3. Return Processed
+
+At this stage, the Return is processed, which creates the Return Sales Agreement.
+This removes the outstanding balance shown in the previous section, which settles the Order's Financial Summary.
+
+![Stage 3 Activity](/images/return-processed-activity.png)
+
+![Return Processed](/images/return-processed.png)
+
+## Conclusion
+
+This guide demonstrated the three key stages in the Return Lifecycle that must be considered for whoever manages outbound fulfillment of exchanges.
+The most important of the three stages is the second stage, where the Exchange LineItem is created, and the Inventory Level moves from "Available" to "Committed".
+This is the point at which the Merchant expects the Exchange to be fulfilled.
