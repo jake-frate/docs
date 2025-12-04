@@ -1699,7 +1699,9 @@
         "type": "string",
         "enum": [
           "RETURN",
-          "RETURN_STATUS"
+          "RETURN_STATUS",
+          "WARRANTY",
+          "WARRANTY_STATUS"
         ],
         "title": "DeepLinkTargetEnum",
         "description": "DeepLink target."
@@ -1924,6 +1926,14 @@
             "title": "Name",
             "description": "The order name/number as displayed on the platform"
           },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Tags",
+            "description": "Tags associated with the order"
+          },
           "created_at": {
             "type": "string",
             "title": "Created At",
@@ -1964,6 +1974,7 @@
           "id",
           "platform_id",
           "name",
+          "tags",
           "created_at",
           "taxes_included"
         ],
