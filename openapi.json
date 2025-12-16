@@ -2727,6 +2727,15 @@
           "review_decision": {
             "$ref": "#/components/schemas/ReturnReviewDecisionEnum",
             "description": "The review decision for the return"
+          },
+          "image_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Image Urls",
+            "description": "The URLs of the images to review",
+            "default": []
           }
         },
         "type": "object",
