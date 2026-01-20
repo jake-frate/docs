@@ -82,6 +82,22 @@
             }
           },
           {
+            "name": "tracking_code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tracking Code"
+            }
+          },
+          {
             "name": "min_created_at",
             "in": "query",
             "required": false,
@@ -843,6 +859,22 @@
                 }
               ],
               "title": "Order Name"
+            }
+          },
+          {
+            "name": "tracking_code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tracking Code"
             }
           },
           {
