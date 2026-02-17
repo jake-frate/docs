@@ -1183,6 +1183,76 @@
         }
       }
     },
+    "/v2/return-groups/{return_group_id}/review-by-sku": {
+      "post": {
+        "summary": "Review Return Group By Sku",
+        "description": "Public API review return group by SKU endpoint",
+        "operationId": "review_return_group_by_sku_v2_return_groups__return_group_id__review_by_sku_post",
+        "parameters": [
+          {
+            "name": "return_group_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Return Group Id"
+            }
+          },
+          {
+            "name": "x-frate-api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Frate-Api-Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewReturnGroupBySkuInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReturnLineItemSerializer"
+                  },
+                  "title": "Response Review Return Group By Sku V2 Return Groups  Return Group Id  Review By Sku Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v2/shipments/{shipment_id}": {
       "get": {
         "summary": "Get Shipment",
@@ -2595,6 +2665,53 @@
         ],
         "title": "ReturnReviewDecisionEnum"
       },
+      "ReviewReturnBySkuInput": {
+        "properties": {
+          "return_sku": {
+            "type": "string",
+            "title": "Return Sku",
+            "description": "The SKU of the return to review"
+          },
+          "review_decision": {
+            "$ref": "#/components/schemas/ReturnReviewDecisionEnum",
+            "description": "The review decision for the return"
+          },
+          "image_urls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Image Urls",
+            "description": "The URLs of the images to review",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "return_sku",
+          "review_decision"
+        ],
+        "title": "ReviewReturnBySkuInput",
+        "description": "Input serializer for reviewing a single return"
+      },
+      "ReviewReturnGroupBySkuInput": {
+        "properties": {
+          "returns": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewReturnBySkuInput"
+            },
+            "type": "array",
+            "title": "Returns",
+            "description": "The returns to review by SKU"
+          }
+        },
+        "type": "object",
+        "required": [
+          "returns"
+        ],
+        "title": "ReviewReturnGroupBySkuInput",
+        "description": "Input serializer for reviewing a return group by SKU"
+      },
       "ShipmentSerializer": {
         "properties": {
           "type": {
@@ -2687,6 +2804,26 @@
             ],
             "title": "Delivered At",
             "description": "ISO 8601 timestamp when the shipment was delivered"
+          },
+          "return_group_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Return Group Id",
+            "description": "The ID of the return group for the shipment"
+          },
+          "return_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Return Ids",
+            "description": "The IDs of the returns for the shipment"
           }
         },
         "type": "object",
