@@ -46,6 +46,7 @@
               "api-reference/endpoints/get-shipment",
               "api-reference/endpoints/update-shipment",
               "api-reference/endpoints/submit-return-group-review",
+              "api-reference/endpoints/submit-return-group-review-by-sku",
               "api-reference/endpoints/resend-email"
             ]
           }
