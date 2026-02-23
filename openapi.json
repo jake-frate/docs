@@ -715,9 +715,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-
-                }
+                "schema": {}
               }
             }
           },
@@ -774,6 +772,139 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeepLinkSerializer"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/line-item-images": {
+      "get": {
+        "tags": [
+          "line-item-images"
+        ],
+        "summary": "List Line Item Images",
+        "description": "List LineItemImages for the shop (cursor-paginated)",
+        "operationId": "list_line_item_images_v2_line_item_images_get",
+        "parameters": [
+          {
+            "name": "after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After"
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Before"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "DESC",
+                "ASC"
+              ],
+              "type": "string",
+              "default": "DESC",
+              "title": "Order"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "return_group_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Return group IDs",
+              "title": "Return Group Ids"
+            },
+            "description": "Return group IDs"
+          },
+          {
+            "name": "x-frate-api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Frate-Api-Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LineItemImageListSerializer"
                 }
               }
             }
@@ -1164,9 +1295,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-
-                }
+                "schema": {}
               }
             }
           },
@@ -1960,6 +2089,79 @@
         ],
         "title": "InternalReturnStatusEnum"
       },
+      "LineItemImageListSerializer": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/LineItemImageSerializer"
+            },
+            "type": "array",
+            "title": "Items",
+            "description": "List of line item images"
+          },
+          "page_info": {
+            "$ref": "#/components/schemas/PageInfoSerializer",
+            "description": "Pagination metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "page_info"
+        ],
+        "title": "LineItemImageList",
+        "description": "Paginated list of LineItemImage items."
+      },
+      "LineItemImageSerializer": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "line_item_image",
+            "title": "Type",
+            "description": "The type identifier for this resource",
+            "default": "line_item_image"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id",
+            "description": "Unique identifier for the line item image"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename",
+            "description": "Original filename"
+          },
+          "size": {
+            "type": "integer",
+            "title": "Size",
+            "description": "File size in bytes"
+          },
+          "return_group_id": {
+            "type": "integer",
+            "title": "Return Group Id",
+            "description": "ID of the return group"
+          },
+          "return_id": {
+            "type": "integer",
+            "title": "Return Id",
+            "description": "ID of the return (returns table)"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "description": "Presigned GET URL for the image. URL is good for 1 hour."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "filename",
+          "size",
+          "return_group_id"
+        ],
+        "title": "LineItemImage",
+        "description": "LineItemImage serializer with return_group_id, return_id, and presigned url."
+      },
       "MessageResponse": {
         "properties": {
           "message": {
@@ -2152,15 +2354,10 @@
         "type": "object",
         "required": [
           "has_prev_page",
-          "has_next_page",
-          "start_cursor",
-          "end_cursor",
-          "start_index",
-          "end_index",
-          "total_count"
+          "has_next_page"
         ],
-        "title": "PageInfoSerializer",
-        "description": "PageInfo Serializer"
+        "title": "PageInfo",
+        "description": "PageInfo for cursor-paginated list responses."
       },
       "QuestionAnswerSerializer": {
         "properties": {
@@ -3108,11 +3305,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3121,11 +3318,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3134,11 +3331,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3147,11 +3344,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3160,11 +3357,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3320,11 +3517,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3333,11 +3530,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3346,11 +3543,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }
@@ -3359,11 +3556,11 @@
             "$ref": "#/components/schemas/MoneyBag",
             "default": {
               "shop_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               },
               "presentment_money": {
-                "amount": 0,
+                "amount": 0.0,
                 "currency_code": "USD"
               }
             }

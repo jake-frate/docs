@@ -40,6 +40,7 @@
             "group": "Endpoints",
             "pages": [
               "api-reference/endpoints/return-groups",
+              "api-reference/endpoints/list-line-item-images",
               "api-reference/endpoints/create-return-deep-link",
               "api-reference/endpoints/create-allowlist-item",
               "api-reference/endpoints/list-allowlist-items",
