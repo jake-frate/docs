@@ -19,6 +19,15 @@
         "tab": "Guides",
         "groups": [
           {
+            "group": "Return Lifecycle",
+            "pages": [
+              "guides/return-lifecycle/exchange-api",
+              "guides/return-lifecycle/exchange-api-advanced",
+              "guides/return-lifecycle/draft-orders",
+              "guides/return-lifecycle/draft-orders-advanced"
+            ]
+          },
+          {
             "group": "Integrations",
             "pages": [
               "guides/integrations/erp-software",
